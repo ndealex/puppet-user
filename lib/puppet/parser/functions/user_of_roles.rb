@@ -1,5 +1,5 @@
 #
-# role_users.rb
+# user_of_roles.rb
 #
 # Alexander Schrapel <ndealex@gmail.com>
 #

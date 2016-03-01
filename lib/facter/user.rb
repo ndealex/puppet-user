@@ -2,9 +2,9 @@
 users_file = '/etc/passwd'
 group_file = '/etc/group'
 
-Facter.add(:sl_users) do
+Facter.add(:system_users) do
   setcode do
-    users = []
+    users = {}
     if File.readable?(users_file) then
       File.open(users_file, 'r') do |lines|
         lines.each do |line|
@@ -16,19 +16,17 @@ Facter.add(:sl_users) do
           # 4 - GECOS
           # 5 - Home
           # 6 - Shell
-          if result[2].to_i > 9999 && result[2].to_i < 65534 then
-            users << result[0]
-          end
+          users[result[0]]={"uid"=>result[2], "gid"=>result[3], "desc"=>result[4], "home"=>result[5], "shell"=>result[6].strip!}
         end
       end
     end
-    users.join(',')
+    users
   end
 end
 
-Facter.add(:sl_groups) do
+Facter.add(:system_groups) do
   setcode do
-    groups = []
+    groups = {}
     if File.readable?(group_file) then
       File.open(group_file, 'r') do |lines|
         lines.each do |line|
@@ -37,12 +35,10 @@ Facter.add(:sl_groups) do
           # 1 - x
           # 2 - gid
           # 3 - members
-          if result[2].to_i > 9999 && result[2].to_i < 65534 then
-            groups << result[0]
-          end
+          groups[result[0]] = {"gid"=>result[2],"members"=>result[3].split(",").map!(&:strip).reject{|g| g == ""} }
         end
       end
     end
-    groups.join(',')
+    groups
   end
 end

@@ -42,7 +42,14 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class user {
+class user (
+  $users              = lookup('user_users', Hash, 'deep'),
+  $groups             = lookup('user_groups', Hash, 'deep'),
+
+  $default_home_root  = $user::params::default_home_root,
+  $managehome         = $user::params::managehome,
+  $default_shell      = $user::params::default_shell,
+) inherits user::params {
 
 
 }

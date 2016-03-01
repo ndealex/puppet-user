@@ -1,14 +1,18 @@
 {
-  "name": "puppet-user",
+  "name": "zarambo-user",
   "version": "0.0.1",
-  "author": "Alexander Schrapel",
+  "author": "Alexander Schrapel <alexander.schrapel@zarambo.de>",
   "summary": "Role based user management for puppet.",
   "license": "Apache-2.0",
-  "source": "https://github.com/ndealex/puppet-user",
-  "project_page": "https://github.com/ndealex/puppet-user",
-  "issues_url": "https://github.com/ndealex/puppet-user/issues",
+  "source": "https://github.com/zarambo/puppet-user",
+  "project_page": "https://github.com/zarambo/puppet-user",
+  "issues_url": "https://github.com/zarambo/puppet-user/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs-stdlib","version_requirement":">= 4.11.0"},
+    {"name":"onyxpoint-gpasswd","version_requirement":">= 0.1.2"}
+  ],
+  "requirements": [
+    {"name": "puppet","version_requirement": ">=4.3.0 <5.0.0"}
   ],
   "data_provider": null
 }
