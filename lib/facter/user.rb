@@ -2,7 +2,7 @@
 users_file = '/etc/passwd'
 group_file = '/etc/group'
 
-Facter.add(:system_users) do
+Facter.add(:system_accounts) do
   setcode do
     users = {}
     if File.readable?(users_file) then

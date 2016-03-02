@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
     ignore = arguments[1] if arguments.length > 1
 
 
-    users = lookupvar("::system_users")
+    users = lookupvar("::system_accounts")
     if not users.nil?
       users.each do |user, value|
         to_remove << user if (ignore.include?(user) == false) and (all.include?(user) == false)

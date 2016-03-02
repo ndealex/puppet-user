@@ -28,7 +28,7 @@ define user::group (
       $_gid = undef
     }
 
-    ::group { $group_name:
+    group { $group_name:
       ensure  => 'present',
       gid     => $_gid,
       members => $_members,
@@ -36,7 +36,7 @@ define user::group (
 
   }elsif $ensure == 'absent' {
 
-    ::group { $group_name:
+    group { $group_name:
       ensure => 'absent',
     }
 

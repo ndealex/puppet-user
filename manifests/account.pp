@@ -90,7 +90,7 @@ define user::account (
     }
 
     if has_key($user, 'keys') {
-      $user['keys'].each |key_name, key| {
+      $user['keys'].each |$key_name, $key| {
 
         user::key { "${user_name}-${key_name}":
           ensure    => $present,
@@ -108,9 +108,9 @@ define user::account (
       password  => '',
     })
 
-    if has_key($users, $user_name) && has_key($users[$user_name],'keys') {
+    if has_key($users, $user_name) and has_key($users[$user_name],'keys') {
       $keys = $users[$user_name]['keys']
-      $keys.each |key_name, key| {
+      $keys.each |$key_name, $key| {
 
         user::key { "${user_name}-${key_name}":
           ensure    => 'absent',

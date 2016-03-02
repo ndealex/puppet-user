@@ -22,6 +22,8 @@
 #
 class user::params {
 
+  $create_accounts    = true
+  $deactivate_accounts= true
   $default_home_root  = '/home'
   $managehome         = true
   $default_shell      = '/bin/bash'
