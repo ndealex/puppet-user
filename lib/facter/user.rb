@@ -6,7 +6,7 @@ Facter.add(:system_accounts) do
   setcode do
     users = {}
     if File.readable?(users_file) then
-      File.open(users_file, 'r') do |lines|
+      File.open(users_file, 'r', :encoding => "UTF-8") do |lines|
         lines.each do |line|
           result = line.split(":")
           # 0 - username
@@ -28,7 +28,7 @@ Facter.add(:system_groups) do
   setcode do
     groups = {}
     if File.readable?(group_file) then
-      File.open(group_file, 'r') do |lines|
+      File.open(group_file, 'r', :encoding => "UTF-8") do |lines|
         lines.each do |line|
           result = line.split(":")
           # 0 - groupname
