@@ -86,6 +86,7 @@ define user::account (
     # create group, if necessary
     user::group { $user_name:
       ensure  => 'present',
+      gid     => $gid,
       before  => User[$user_name],
     }
 
