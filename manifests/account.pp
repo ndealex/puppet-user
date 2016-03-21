@@ -90,8 +90,8 @@ define user::account (
       before  => User[$user_name],
     }
 
-    if has_key($user, 'keys') {
-      $user['keys'].each |$key_name, $key| {
+    if has_key($user, 'ssh_keys') {
+      $user['ssh_keys'].each |$key_name, $key| {
 
         user::key { "${user_name}-${key_name}":
           ensure    => $present,
