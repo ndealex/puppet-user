@@ -67,7 +67,10 @@ define user::account (
         undef   => $user::managehome,
         default => $user['managehome'],
       },
-      password          => $user['password'],
+      password          => $user['password'] ? {
+        undef   => '*',
+        default => $user['password']
+      },
       shell             => $user['shell'] ? {
         undef   => $user::default_shell,
         default => $user['shell'],
@@ -106,7 +109,7 @@ define user::account (
 
     ensure_resource('user', $name, {
       shell     => '/bin/false',
-      password  => '',
+      password  => '!',
     })
 
     if has_key($users, $user_name) and has_key($users[$user_name],'keys') {
