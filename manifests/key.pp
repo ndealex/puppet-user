@@ -46,7 +46,7 @@ define user::key (
     ensure  => 'directory',
     mode    => '0700',
     owner   => $user_name,
-    require => User::Home[$home_dir],
+    require => User::Home[$_home_dir],
   })
 
   ensure_resource('ssh_authorized_key', "${user_name}-${key_name}", {

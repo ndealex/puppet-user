@@ -57,7 +57,7 @@ define user::account (
     }
 
     # create/manage user (/etc/passwd et. al.)
-    user { $name:
+    user { $user_name:
       ensure            => $ensure,
       name              => $user_name,
       uid               => $user['uid'],
@@ -94,7 +94,7 @@ define user::account (
       $user['keys'].each |$key_name, $key| {
 
         user::key { "${user_name}-${key_name}":
-          ensure    => $present,
+          ensure    => 'present',
           user_name => $name,
           key_name  => $key_name,
           key       => $key,
