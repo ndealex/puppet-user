@@ -27,7 +27,7 @@ define user::key (
 ) {
 
   if !$key {
-    if has_key($users, $user_name) && has_key($users[$username], $key_name) {
+    if has_key($users, $user_name) and has_key($users[$username], $key_name) {
       $_key = $users[$username][$key_name]
     } else {
       fail("User: Can't find ssh key with name ${key_name} for user ${user_name}.")
@@ -54,9 +54,9 @@ define user::key (
     key             => $_key['key'],
     type            => $_key['type'],
     options         => $_key['options'],
-    user            => $key_name,
+    user            => $user_name,
     target          => "${_home_dir}/.ssh/authorized_keys",
-    purge_ssh_keys  => true,
+    #purge_ssh_keys  => true,
     require         => File["${_home_dir}/.ssh"],
   })
 

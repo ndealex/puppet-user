@@ -67,7 +67,10 @@ define user::account (
         undef   => $user::managehome,
         default => $user['managehome'],
       },
-      password          => $user['password'],
+      password          => $user['password'] ? {
+        undef   => '*',
+        default => $user['password']
+      },
       shell             => $user['shell'] ? {
         undef   => $user::default_shell,
         default => $user['shell'],
@@ -90,8 +93,8 @@ define user::account (
       before  => User[$user_name],
     }
 
-    if has_key($user, 'keys') {
-      $user['keys'].each |$key_name, $key| {
+    if has_key($user, 'ssh_keys') {
+      $user['ssh_keys'].each |$key_name, $key| {
 
         user::key { "${user_name}-${key_name}":
           ensure    => 'present',
@@ -106,7 +109,7 @@ define user::account (
 
     ensure_resource('user', $name, {
       shell     => '/bin/false',
-      password  => '',
+      password  => '!',
     })
 
     if has_key($users, $user_name) and has_key($users[$user_name],'keys') {
