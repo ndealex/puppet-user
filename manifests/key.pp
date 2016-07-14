@@ -52,7 +52,7 @@ define user::key (
   ensure_resource('ssh_authorized_key', "${user_name}-${key_name}", {
     ensure          => $ensure,
     key             => $_key['key'],
-    type            => $_key['type'],
+    'type'            => $_key['type'],
     options         => $_key['options'],
     user            => $user_name,
     target          => "${_home_dir}/.ssh/authorized_keys",
