@@ -101,6 +101,7 @@ define user::account (
           user_name => $name,
           key_name  => $key_name,
           key       => $key,
+          home_dir  => $home,
         }
 
       }
